@@ -1,0 +1,72 @@
+<!-- Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See full license at the bottom of this file. -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <title>YouTube extension</title>
+    <style type="text/css">
+        *
+        {
+            margin: 0px;
+            overflow: hidden;
+        }
+        .thumbnailFrame
+        {
+            margin-bottom: 4px;
+        }
+        .thumbnail
+        {
+            margin-right: 4px;
+        }
+        .videoTitle
+        {
+            font-family: Segoe UI;
+            font-size: 16px;
+        }
+        .multiLineVideoDetails
+        {
+            font-family: Segoe UI;
+            font-size: 14px;
+            color: Gray;
+        }
+        .singleLineVideoDetails
+        {
+            font-family: Segoe UI;
+            font-size: 12px;
+            color: Gray;
+        }
+    </style>
+    <script src="res/js/MicrosoftAjax.js" type="text/javascript"></script>
+    <!-- Use the CDN reference to Office.js. -->
+    <script src="https://appsforoffice.microsoft.com/lib/1.0/hosted/Office.js"
+        type="text/javascript"></script>
+    <script src="res/js/strings_en-us.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                          
+        function init(videoURLs) {
+            
+            //document.getElementById("inputUrl").value = videoURLs;
+            document.getElementById("embeddedVideo").innerHTML = "<iframe width='1000' height='200' frameborder='0' src="+ videoURLs +"'/>";
+           
+        }
+
+        Office.initialize = function (reason) {
+            init(Office.context.mailbox.item.getRegExMatches().VideoURL);
+        }
+    </script>
+</head>
+<body style="margin: 8px">
+    <table cellpadding="0px" cellspacing="0px" style="table-layout: fixed" height="200px">
+        <tr>
+            <td id="thumbnails" valign="top" />
+            <td id="embeddedVideo" valign="top" />
+            <td valign="top">
+                <div id="details" style="margin-left: 10px; height: 200px; overflow: auto"/>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
